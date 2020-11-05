@@ -10,6 +10,7 @@ import {
   faDollarSign,
   faBed
 } from "@fortawesome/free-solid-svg-icons";
+
 const FilterElement = styled.div`
   width: 100%;
   background-color: ${variables.secondaryColor};
@@ -32,6 +33,11 @@ const IndividualFilterElement = styled.div`
     border: none;
     margin-left: 0.5rem;
     color: ${variables.gray};
+
+    &:active {
+      outline: none;
+      border: none;
+    }
   }
 
   option {
@@ -49,7 +55,7 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignOutAlt} color={variables.gray} />
-        <input type="date" />
+        <input type="date" onChange={console.log("")} />
       </IndividualFilterElement>
 
       <IndividualFilterElement>

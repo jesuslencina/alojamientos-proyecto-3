@@ -21,7 +21,7 @@ function Header() {
     <HeaderElement>
       <h1>Hoteles</h1>
       <p>
-        Desde el <span>hardcodeado</span> hasta el <span>harcodeado</span>
+        Desde el <span>harcodeado</span> hasta el <span>harcodeado</span>
       </p>
     </HeaderElement>
   );
