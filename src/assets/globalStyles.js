@@ -1,7 +1,7 @@
 const variables = {
-    mainColor: '#00D1B2',
-    secondaryColor: '#01D0B1',
-    gray: '#F4F4F4'
-}
+  mainColor: "#00D1B2",
+  secondaryColor: "#1F9BED",
+  gray: "#C5C5C5"
+};
 
 export default variables;
