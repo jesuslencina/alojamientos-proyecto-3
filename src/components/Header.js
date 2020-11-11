@@ -14,6 +14,13 @@ const HeaderElement = styled.header`
   span {
     font-weight: 650;
   }
+
+  @media screen and (max-width: ${variables.breakpoint}) {
+    h1,
+    p {
+      text-align: center;
+    }
+  }
 `;
 
 function Header() {

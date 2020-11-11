@@ -17,6 +17,11 @@ const FilterElement = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 0.5rem 0;
+
+  @media screen and (max-width: ${variables.breakpoint}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const IndividualFilterElement = styled.div`
@@ -43,6 +48,15 @@ const IndividualFilterElement = styled.div`
   option {
     font-size: 1.025rem;
   }
+
+  @media screen and (max-width: ${variables.breakpoint}) {
+    margin: 0.25rem;
+    width: 90%;
+    input,
+    select {
+      width: 100%;
+    }
+  }
 `;
 
 function Filters() {
@@ -55,7 +69,7 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignOutAlt} color={variables.gray} />
-        <input type="date" onChange={console.log("")} />
+        <input type="date" />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
