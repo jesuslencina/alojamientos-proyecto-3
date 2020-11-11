@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import variables from "../assets/globalStyles";
+import "animate.css/animate.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const FilterElement = styled.div`
+  position: relative;
   width: 100%;
   background-color: ${variables.secondaryColor};
   display: flex;
@@ -39,9 +41,8 @@ const IndividualFilterElement = styled.div`
     margin-left: 0.5rem;
     color: ${variables.gray};
 
-    &:active {
+    &:focus {
       outline: none;
-      border: none;
     }
   }
 
@@ -59,39 +60,77 @@ const IndividualFilterElement = styled.div`
   }
 `;
 
+const ResetButton = styled.button`
+  position: absolute;
+  top: 4.25rem;
+  border: none;
+  background-color: ${variables.secondaryColor};
+  color: white;
+  font-weight: 650;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 27px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    color: ${variables.secondaryColor};
+    border: 1pt inset ${variables.secondaryColor};
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  @media screen and (max-width: ${variables.breakpoint}) {
+    top: 15rem;
+  }
+`;
+
 function Filters() {
+  const [buttonVisibility, setButtonVisibility] = useState("hidden");
+
+  const makeButtonVisible = () => {
+    setButtonVisibility("animate__bounceIn");
+  };
+
   return (
     <FilterElement>
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignInAlt} color={variables.gray} />
-        <input type="date" />
+        <input type="date" onChange={makeButtonVisible} />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignOutAlt} color={variables.gray} />
-        <input type="date" />
+        <input type="date" onChange={makeButtonVisible} />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faGlobe} color={variables.gray} />
-        <select>
+        <select onChange={makeButtonVisible}>
           <option>Hardcodeado</option>
         </select>
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faDollarSign} color={variables.gray} />
-        <select>
+        <select onChange={makeButtonVisible}>
           <option>Hardcodeado</option>
         </select>
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faBed} color={variables.gray} />
-        <select>
+        <select onChange={makeButtonVisible}>
           <option>Hardcodeado</option>
         </select>
       </IndividualFilterElement>
+      <ResetButton className={buttonVisibility}>RESET</ResetButton>
     </FilterElement>
   );
 }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import variables from "../assets/globalStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faMapMarker } from "@fortawesome/free-solid-svg-icons";
+import "animate.css/animate.css";
 
 const CardElement = styled.article`
   width: 30%;

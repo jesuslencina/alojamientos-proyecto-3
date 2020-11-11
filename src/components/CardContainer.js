@@ -3,6 +3,7 @@ import styled from "styled-components";
 import hotelData from "../assets/scripts/data";
 import Card from "./Card";
 import variables from "../assets/globalStyles";
+import "animate.css/animate.css";
 
 const CardContainerElement = styled.section`
   margin: 0 auto;
@@ -13,8 +14,10 @@ const CardContainerElement = styled.section`
   padding: 4rem 2rem;
 
   @media screen and (max-width: ${variables.breakpoint}) {
+    width: 100%;
     flex-direction: column;
     align-items: center;
+    padding: 4rem 0;
   }
 `;
 
@@ -24,6 +27,7 @@ function CardContainer() {
       {hotelData.map((item) => {
         return (
           <Card
+            className="animate__fadeInDown"
             //CUIDADO CON LA KEY
             key={item.description}
             name={item.name}
