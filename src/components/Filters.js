@@ -100,7 +100,7 @@ function Filters() {
 
   const makeButtonInvisible = () => {
     setButtonVisibility("animate__bounceOut");
-    setTimeout(setButtonVisibility("hidden"), 1000);
+    setButtonVisibility("hidden");
   };
 
   return (

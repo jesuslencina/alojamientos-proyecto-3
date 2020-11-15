@@ -1,4 +1,5 @@
 import React from "react";
+import { ListProvider } from "./components/ListContext";
 import Header from "./components/Header";
 import Filters from "./components/Filters";
 import CardContainer from "./components/CardContainer";
@@ -6,9 +7,11 @@ import CardContainer from "./components/CardContainer";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Filters />
-      <CardContainer />
+      <ListProvider>
+        <Header />
+        <Filters />
+        <CardContainer />
+      </ListProvider>
     </div>
   );
 }

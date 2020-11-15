@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
+import { ListContext } from "./ListContext";
 import moment from "moment";
+
 import styled from "styled-components";
 import variables from "../assets/globalStyles";
+
+import "moment/locale/es";
+moment.locale("es");
 
 const HeaderElement = styled.header`
   background-color: ${variables.mainColor};
@@ -27,6 +32,8 @@ const HeaderElement = styled.header`
 `;
 
 function Header() {
+  const filters = useContext(ListContext);
+
   return (
     <HeaderElement>
       <h1>
@@ -35,7 +42,8 @@ function Header() {
         <span style={{ color: "#C4482F" }}>go</span>
       </h1>
       <p>
-        Desde el <span>hardcodeado</span> hasta el <span>harcodeado</span>
+        Desde el <span>{moment(filters.date1).format("dddd D [de] MMMM")}</span>{" "}
+        hasta el <span>{moment(filters.date2).format("dddd D [de] MMMM")}</span>
       </p>
     </HeaderElement>
   );
