@@ -98,6 +98,11 @@ function Filters() {
     setButtonVisibility("animate__bounceIn");
   };
 
+  const makeButtonInvisible = () => {
+    setButtonVisibility("animate__bounceOut");
+    setTimeout(setButtonVisibility("hidden"), 1000);
+  };
+
   return (
     <FilterElement>
       <IndividualFilterElement>
