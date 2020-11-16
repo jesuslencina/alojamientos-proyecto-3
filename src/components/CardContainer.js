@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import hotelData from "../assets/scripts/data";
 import Card from "./Card";
@@ -28,8 +29,7 @@ function CardContainer() {
         return (
           <Card
             className="animate__fadeInDown"
-            //CUIDADO CON LA KEY
-            key={item.description}
+            key={uuidv4()}
             name={item.name}
             desc={item.description}
             img={item.photo}

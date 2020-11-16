@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ListContext } from "./ListContext";
 import moment from "moment";
-
+import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import variables from "../assets/globalStyles";
 import "animate.css/animate.css";
@@ -124,7 +124,7 @@ function Filters() {
         <FontAwesomeIcon icon={faGlobe} color={variables.gray} />
         <select onChange={makeButtonVisible}>
           {filters.country.map((option) => {
-            return <option>{option}</option>;
+            return <option key={uuidv4()}>{option}</option>;
           })}
         </select>
       </IndividualFilterElement>
@@ -133,7 +133,7 @@ function Filters() {
         <FontAwesomeIcon icon={faDollarSign} color={variables.gray} />
         <select onChange={makeButtonVisible}>
           {filters.price.map((option) => {
-            return <option>{option}</option>;
+            return <option key={uuidv4()}>{option}</option>;
           })}
         </select>
       </IndividualFilterElement>
@@ -142,7 +142,7 @@ function Filters() {
         <FontAwesomeIcon icon={faBed} color={variables.gray} />
         <select onChange={makeButtonVisible}>
           {filters.rooms.map((option) => {
-            return <option>{option}</option>;
+            return <option key={uuidv4()}>{option}</option>;
           })}
         </select>
       </IndividualFilterElement>
