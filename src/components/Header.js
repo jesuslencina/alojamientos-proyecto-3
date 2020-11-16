@@ -6,7 +6,7 @@ import styled from "styled-components";
 import variables from "../assets/globalStyles";
 
 import "moment/locale/es";
-moment.locale("es");
+moment.updateLocale("es");
 
 const HeaderElement = styled.header`
   background-color: ${variables.mainColor};

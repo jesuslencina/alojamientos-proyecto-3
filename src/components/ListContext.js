@@ -7,9 +7,9 @@ export function ListProvider(props) {
   const [filters, setFilters] = useState({
     date1: moment(),
     date2: moment().add(1, "w"),
-    country: "any",
-    price: "any",
-    rooms: "any"
+    country: ["Cualquier país", "Argentina", "Brasil", "Chile", "Uruguay"],
+    price: ["Cualquier precio", "$", "$$", "$$$", "$$$$"],
+    rooms: ["Cualquier tamaño", "Pequeño", "Mediano", "Grande"]
   });
 
   return (

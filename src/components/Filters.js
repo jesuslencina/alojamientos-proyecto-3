@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ListContext } from "./ListContext";
+import moment from "moment";
+
 import styled from "styled-components";
 import variables from "../assets/globalStyles";
 import "animate.css/animate.css";
@@ -94,6 +97,8 @@ const ResetButton = styled.button`
 function Filters() {
   const [buttonVisibility, setButtonVisibility] = useState("hidden");
 
+  const filters = useContext(ListContext);
+
   const makeButtonVisible = () => {
     setButtonVisibility("animate__bounceIn");
   };
@@ -118,21 +123,27 @@ function Filters() {
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faGlobe} color={variables.gray} />
         <select onChange={makeButtonVisible}>
-          <option>Hardcodeado</option>
+          {filters.country.map((option) => {
+            return <option>{option}</option>;
+          })}
         </select>
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faDollarSign} color={variables.gray} />
         <select onChange={makeButtonVisible}>
-          <option>Hardcodeado</option>
+          {filters.price.map((option) => {
+            return <option>{option}</option>;
+          })}
         </select>
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faBed} color={variables.gray} />
         <select onChange={makeButtonVisible}>
-          <option>Hardcodeado</option>
+          {filters.rooms.map((option) => {
+            return <option>{option}</option>;
+          })}
         </select>
       </IndividualFilterElement>
       <ResetButton className={buttonVisibility}>RESET</ResetButton>
