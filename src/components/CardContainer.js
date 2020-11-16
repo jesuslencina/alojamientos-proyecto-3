@@ -36,6 +36,7 @@ function CardContainer() {
             location={item.city}
             country={item.country}
             rooms={item.rooms}
+            price={item.price}
           />
         );
       })}

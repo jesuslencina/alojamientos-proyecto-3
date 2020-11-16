@@ -44,6 +44,10 @@ const IndividualFilterElement = styled.div`
     margin-left: 0.5rem;
     color: ${variables.gray};
 
+    ::-webkit-calendar-picker-indicator {
+      opacity: 25%;
+    }
+
     &:focus {
       outline: none;
     }

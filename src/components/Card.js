@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import variables from "../assets/globalStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBed, faMapMarker } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBed,
+  faMapMarker,
+  faDollarSign
+} from "@fortawesome/free-solid-svg-icons";
 import "animate.css/animate.css";
 
 const CardElement = styled.article`
@@ -94,6 +98,31 @@ function Card(props) {
           <FontAwesomeIcon icon={faBed} color="white" />
         </span>
         <p>{props.rooms} Habitaciones</p>
+      </div>
+      <div className="price">
+        <span>
+          <FontAwesomeIcon
+            icon={faDollarSign}
+            color="white"
+            opacity={props.price > 0 ? "100%" : "50%"}
+          />
+          <FontAwesomeIcon
+            icon={faDollarSign}
+            color="white"
+            opacity={props.price > 1 ? "100%" : "50%"}
+          />
+          <FontAwesomeIcon
+            icon={faDollarSign}
+            color="white"
+            opacity={props.price > 2 ? "100%" : "50%"}
+          />
+          <FontAwesomeIcon
+            icon={faDollarSign}
+            color="white"
+            opacity={props.price > 3 ? "100%" : "50%"}
+          />
+        </span>
+        <p>Precio</p>
       </div>
       <button>Reservar</button>
     </CardElement>
