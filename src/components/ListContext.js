@@ -7,13 +7,13 @@ export function ListProvider(props) {
   const [filters, setFilters] = useState({
     date1: moment(),
     date2: moment().add(1, "w"),
-    country: ["Cualquier país", "Argentina", "Brasil", "Chile", "Uruguay"],
+    countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
     price: ["Cualquier precio", "$", "$$", "$$$", "$$$$"],
     rooms: ["Cualquier tamaño", "Pequeño", "Mediano", "Grande"]
   });
 
   return (
-    <ListContext.Provider value={filters}>
+    <ListContext.Provider value={[filters, setFilters]}>
       {props.children}
     </ListContext.Provider>
   );

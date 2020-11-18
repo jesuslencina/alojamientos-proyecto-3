@@ -15,6 +15,10 @@ import {
   faBed
 } from "@fortawesome/free-solid-svg-icons";
 
+/*------------------------------------------------------------------*/
+//STYLED SETUP
+/*------------------------------------------------------------------*/
+
 const FilterElement = styled.div`
   position: relative;
   width: 100%;
@@ -43,6 +47,7 @@ const IndividualFilterElement = styled.div`
     border: none;
     margin-left: 0.5rem;
     color: ${variables.gray};
+    background-color: white;
 
     ::-webkit-calendar-picker-indicator {
       opacity: 25%;
@@ -98,11 +103,25 @@ const ResetButton = styled.button`
   }
 `;
 
+/*------------------------------------------------------------------*/
+//COMPONENT
+/*------------------------------------------------------------------*/
+
 function Filters() {
+  /*STATE & CONTEXT SETUP*/
+  const [filters, setFilters] = useContext(ListContext);
+
   const [buttonVisibility, setButtonVisibility] = useState("hidden");
 
-  const filters = useContext(ListContext);
+  const defaultOptions = {
+    countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
+    price: ["Cualquier precio", "$", "$$", "$$$", "$$$$"],
+    rooms: ["Cualquier tamaño", "Pequeño", "Mediano", "Grande"]
+  };
 
+  /*FUNCTIONS*/
+
+  //Reset Button
   const makeButtonVisible = () => {
     setButtonVisibility("animate__bounceIn");
   };
@@ -112,24 +131,58 @@ function Filters() {
     setButtonVisibility("hidden");
   };
 
+  const resetFilters = () => {};
+
+  //Handle filters' changes
+
+  //date filters
+  const changeDateFilters = (event) => {
+    const newFiltering = {
+      ...filters,
+      [event.target.name]: moment(event.target.value)
+    };
+    setFilters(newFiltering);
+    console.log(filters);
+  };
+
+  //countries' filter
+  const changeSelectFilter = (event) => {
+    if (!event.target.value.includes("Cualquier")) {
+      const newFiltering = {
+        ...filters,
+        [event.target.name]: [event.target.value]
+      };
+      setFilters(newFiltering);
+    } else {
+      const newFiltering = {
+        ...filters,
+        [event.target.name]: defaultOptions[event.target.name]
+      };
+      setFilters(newFiltering);
+    }
+  };
+
+  /*JSX*/
   return (
     <FilterElement>
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignInAlt} color={variables.gray} />
-        <input type="date" onChange={makeButtonVisible} />
+        <input name="date1" type="date" onChange={changeDateFilters} />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignOutAlt} color={variables.gray} />
-        <input type="date" onChange={makeButtonVisible} />
+        <input name="date2" type="date" onChange={makeButtonVisible} />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faGlobe} color={variables.gray} />
-        <select onChange={makeButtonVisible}>
-          {filters.country.map((option) => {
-            return <option key={uuidv4()}>{option}</option>;
-          })}
+        <select name="countries" onChange={changeSelectFilter}>
+          <option>Cualquier país</option>
+          <option>Argentina</option>
+          <option>Brasil</option>
+          <option>Chile</option>
+          <option>Uruguay</option>
         </select>
       </IndividualFilterElement>
 
@@ -154,5 +207,9 @@ function Filters() {
     </FilterElement>
   );
 }
+
+/*------------------------------------------------------------------*/
+//EXPORT
+/*------------------------------------------------------------------*/
 
 export default Filters;

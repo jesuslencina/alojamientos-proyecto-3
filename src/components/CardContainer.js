@@ -6,6 +6,10 @@ import Card from "./Card";
 import variables from "../assets/globalStyles";
 import "animate.css/animate.css";
 
+/*------------------------------------------------------------------*/
+//STYLED SETUP
+/*------------------------------------------------------------------*/
+
 const CardContainerElement = styled.section`
   margin: 0 auto;
   width: 90%;
@@ -21,6 +25,10 @@ const CardContainerElement = styled.section`
     padding: 4rem 0;
   }
 `;
+
+/*------------------------------------------------------------------*/
+//COMPONENT
+/*------------------------------------------------------------------*/
 
 function CardContainer() {
   return (
@@ -43,5 +51,9 @@ function CardContainer() {
     </CardContainerElement>
   );
 }
+
+/*------------------------------------------------------------------*/
+//EXPORT
+/*------------------------------------------------------------------*/
 
 export default CardContainer;
