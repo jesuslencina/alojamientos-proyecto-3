@@ -115,8 +115,8 @@ function Filters() {
 
   const defaultOptions = {
     countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
-    price: ["Cualquier precio", "$", "$$", "$$$", "$$$$"],
-    rooms: ["Cualquier tamaño", "Pequeño", "Mediano", "Grande"]
+    price: ["$", "$$", "$$$", "$$$$"],
+    rooms: ["Pequeño", "Mediano", "Grande"]
   };
 
   /*FUNCTIONS*/
@@ -153,6 +153,7 @@ function Filters() {
         [event.target.name]: [event.target.value]
       };
       setFilters(newFiltering);
+      makeButtonVisible();
     } else {
       const newFiltering = {
         ...filters,
@@ -188,19 +189,22 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faDollarSign} color={variables.gray} />
-        <select onChange={makeButtonVisible}>
-          {filters.price.map((option) => {
-            return <option key={uuidv4()}>{option}</option>;
-          })}
+        <select name="price" onChange={changeSelectFilter}>
+          <option>Cualquier precio</option>
+          <option>$</option>
+          <option>$$</option>
+          <option>$$$</option>
+          <option>$$$$</option>
         </select>
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faBed} color={variables.gray} />
-        <select onChange={makeButtonVisible}>
-          {filters.rooms.map((option) => {
-            return <option key={uuidv4()}>{option}</option>;
-          })}
+        <select name="rooms" onChange={changeSelectFilter}>
+          <option>Cualquier tamaño</option>
+          <option>Pequeño</option>
+          <option>Mediano</option>
+          <option>Grande</option>
         </select>
       </IndividualFilterElement>
       <ResetButton className={buttonVisibility}>RESET</ResetButton>

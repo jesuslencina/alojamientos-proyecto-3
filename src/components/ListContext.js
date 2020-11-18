@@ -8,8 +8,8 @@ export function ListProvider(props) {
     date1: moment(),
     date2: moment().add(1, "w"),
     countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
-    price: ["Cualquier precio", "$", "$$", "$$$", "$$$$"],
-    rooms: ["Cualquier tamaño", "Pequeño", "Mediano", "Grande"]
+    price: ["$", "$$", "$$$", "$$$$"],
+    rooms: ["Pequeño", "Mediano", "Grande"]
   });
 
   return (
