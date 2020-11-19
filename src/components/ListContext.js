@@ -6,7 +6,7 @@ export const ListContext = createContext();
 export function ListProvider(props) {
   const [filters, setFilters] = useState({
     date1: moment(),
-    date2: moment().add(1, "w"),
+    date2: moment().add(5, "d"),
     countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
     price: ["$", "$$", "$$$", "$$$$"],
     rooms: ["Pequeño", "Mediano", "Grande"]

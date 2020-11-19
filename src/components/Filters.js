@@ -137,6 +137,7 @@ function Filters() {
 
   //date filters
   const changeDateFilters = (event) => {
+    console.log(moment(event.target.value));
     const newFiltering = {
       ...filters,
       [event.target.name]: moment(event.target.value)
@@ -173,7 +174,7 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignOutAlt} color={variables.gray} />
-        <input name="date2" type="date" onChange={makeButtonVisible} />
+        <input name="date2" type="date" onChange={changeDateFilters} />
       </IndividualFilterElement>
 
       <IndividualFilterElement>

@@ -32,7 +32,7 @@ const HeaderElement = styled.header`
 `;
 
 function Header() {
-  const filters = useContext(ListContext);
+  const [filters] = useContext(ListContext);
 
   return (
     <HeaderElement>
