@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { ListContext } from "./ListContext";
 import moment from "moment";
-import { v4 as uuidv4 } from "uuid";
+
 import styled from "styled-components";
 import variables from "../assets/globalStyles";
 import "animate.css/animate.css";
@@ -114,12 +114,18 @@ function Filters() {
   const [buttonVisibility, setButtonVisibility] = useState("hidden");
 
   const defaultOptions = {
+    date1: moment(),
+    date2: moment().add(5, "d"),
     countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
     price: ["$", "$$", "$$$", "$$$$"],
     rooms: ["Pequeño", "Mediano", "Grande"]
   };
 
   /*FUNCTIONS*/
+
+  //REMOVE ME//////////////////////////////////////////////////
+  console.log(filters.date1.format("MM-DD-YYYY"));
+  /////////////////////////////////////////////////////////////
 
   //Reset Button
   const makeButtonVisible = () => {
@@ -131,7 +137,22 @@ function Filters() {
     setButtonVisibility("hidden");
   };
 
-  const resetFilters = () => {};
+  const resetFilters = () => {
+    const selectInputs = document.querySelectorAll("select");
+    for (let index = 0; index < selectInputs.length; index++) {
+      selectInputs[index].selectedIndex = 0;
+    }
+    const newFiltering = {
+      ...filters,
+      date1: defaultOptions.date1,
+      date2: defaultOptions.date2,
+      countries: defaultOptions.countries,
+      price: defaultOptions.price,
+      rooms: defaultOptions.rooms
+    };
+    setFilters(newFiltering);
+    makeButtonInvisible();
+  };
 
   //Handle filters' changes
 
@@ -149,10 +170,11 @@ function Filters() {
         [event.target.name]: moment(newDate)
       };
       setFilters(newFiltering);
+      makeButtonVisible();
     }
   };
 
-  //countries' filter
+  //select filters
   const changeSelectFilter = (event) => {
     if (!event.target.value.includes("Cualquier")) {
       const newFiltering = {
@@ -175,12 +197,22 @@ function Filters() {
     <FilterElement>
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignInAlt} color={variables.gray} />
-        <input name="date1" type="date" onChange={changeDateFilters} />
+        <input
+          name="date1"
+          type="date"
+          //value={"filters.date1.format("MM-DD-YYYY")}
+          onChange={changeDateFilters}
+        />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignOutAlt} color={variables.gray} />
-        <input name="date2" type="date" onChange={changeDateFilters} />
+        <input
+          name="date2"
+          type="date"
+          //value={filters.date1.format("MM-DD-YYYY")}
+          onChange={changeDateFilters}
+        />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
@@ -214,7 +246,9 @@ function Filters() {
           <option>Grande</option>
         </select>
       </IndividualFilterElement>
-      <ResetButton className={buttonVisibility}>RESET</ResetButton>
+      <ResetButton className={buttonVisibility} onClick={resetFilters}>
+        RESET
+      </ResetButton>
     </FilterElement>
   );
 }
