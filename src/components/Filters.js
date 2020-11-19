@@ -137,13 +137,19 @@ function Filters() {
 
   //date filters
   const changeDateFilters = (event) => {
-    console.log(moment(event.target.value));
-    const newFiltering = {
-      ...filters,
-      [event.target.name]: moment(event.target.value)
-    };
-    setFilters(newFiltering);
-    console.log(filters);
+    const newDate = event.target.value;
+    if (
+      (event.target.name === "date2" && moment(newDate) <= filters.date1) ||
+      (event.target.name === "date1" && moment(newDate) >= filters.date2)
+    ) {
+      alert("Por favor, ingresá fechas de entrada y de salida válidas");
+    } else {
+      const newFiltering = {
+        ...filters,
+        [event.target.name]: moment(newDate)
+      };
+      setFilters(newFiltering);
+    }
   };
 
   //countries' filter
