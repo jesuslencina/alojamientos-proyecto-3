@@ -134,7 +134,9 @@ function Filters() {
 
   const makeButtonInvisible = () => {
     setButtonVisibility("animate__bounceOut");
-    setButtonVisibility("hidden");
+    setTimeout(() => {
+      setButtonVisibility("hidden");
+    }, 700);
   };
 
   const resetFilters = () => {
