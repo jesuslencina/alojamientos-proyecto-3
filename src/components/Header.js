@@ -34,6 +34,46 @@ const HeaderElement = styled.header`
 function Header() {
   const [filters] = useContext(ListContext);
 
+  const countryText = () => {
+    if (filters.countries.length === 1) {
+      return "en " + filters.countries;
+    }
+  };
+
+  const priceText = () => {
+    if (filters.price.length === 1) {
+      let textualPrice;
+      switch (filters.price[0]) {
+        case "$":
+          textualPrice = "económico";
+          break;
+
+        case "$$":
+          textualPrice = "regular";
+          break;
+
+        case "$$$":
+          textualPrice = "caro";
+          break;
+
+        case "$$$$":
+          textualPrice = "de lujo";
+          break;
+
+        default:
+          textualPrice = "económico";
+          break;
+      }
+      return "de precio " + textualPrice;
+    }
+  };
+
+  const sizeText = () => {
+    if (filters.rooms.length === 1) {
+      return "de tamaño " + filters.rooms;
+    }
+  };
+
   return (
     <HeaderElement>
       <h1>
@@ -43,7 +83,8 @@ function Header() {
       </h1>
       <p>
         Desde el <span>{moment(filters.date1).format("dddd D [de] MMMM")}</span>{" "}
-        hasta el <span>{moment(filters.date2).format("dddd D [de] MMMM")}</span>
+        hasta el <span>{moment(filters.date2).format("dddd D [de] MMMM")}</span>{" "}
+        {countryText()} {priceText()} {sizeText()}
       </p>
     </HeaderElement>
   );
