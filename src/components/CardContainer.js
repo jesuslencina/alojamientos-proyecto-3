@@ -35,31 +35,138 @@ const CardContainerElement = styled.section`
 function CardContainer() {
   const filters = useContext(ListContext)[0];
 
-  let filteredData;
+  let filteredData = [];
 
   //FILTER FUNCTION
   const filterFunction = () => {
+    filteredData = [];
     hotelData.map((item) => {
       /*
       [1]
-      First, it is neccessary to assign the item's date according to
-      the context. The Today variable in data.js isn't the same date
-      that's in the context. 
+      First, it is neccessary to CONVERT the filters to match the data
+      format of the item, and vice versa.
       */
-      console.log("HOTEL:" + item.name);
-      console.log(`DATE FROM FILTERS: ${filters.date1}`);
-      console.log(`DATE FROM ITEM: ${moment(item.availabilityFrom)}`);
-      let difference = moment(
-        filters.date1.diff(moment(item.availabilityFrom))
-      );
-      console.log("DIFFERENCE: " + difference);
-      console.log("...........................");
+      console.log(".........................");
+      console.log(item.name + " is being filtered.");
+      //Price: From "$" symbols to number
+      let convertedPrice;
+
+      if (filters.prices.length === 1) {
+        switch (filters.prices[0]) {
+          case "$":
+            convertedPrice = 1;
+            break;
+
+          case "$$":
+            convertedPrice = 2;
+            break;
+
+          case "$$$":
+            convertedPrice = 3;
+            break;
+
+          default:
+            convertedPrice = 4;
+            break;
+        }
+      } else {
+        convertedPrice = 4;
+      }
+
+      console.log("Filter price: " + convertedPrice);
+
+      //Rooms: Quantity to max number that tells whether it's small, medium or big sized
+      let convertedRoomsStandard;
+      if (filters.rooms.length === 1) {
+        switch (filters.rooms[0]) {
+          case "Pequeño":
+            convertedRoomsStandard = 10;
+            break;
+
+          case "Mediano":
+            convertedRoomsStandard = 20;
+            break;
+
+          default:
+            convertedRoomsStandard = 100;
+            break;
+        }
+      } else {
+        convertedRoomsStandard = 100;
+      }
+
+      console.log("Filter rooms: " + convertedRoomsStandard);
+      console.log("Filter country: " + filters.countries);
+
+      /*
+      [2]
+     We'll see whether the user has selected BOTH date filters or not.
+     For this, we'll compare the CONTEXT to its same DEFAULT VALUES
+      */
+      let filterByDate = true; //If the validation below is FALSE, this will remain unchanged.
+      if (filters.date1.isSame(filters.defaultOptions.date1)) {
+        //If TRUE, it means the FIRST DATE was NOT changed.
+        if (filters.date2.isSame(filters.defaultOptions.date2)) {
+          //If TRUE, it means that BOTH DATES were NOT changed.
+          //If this is the case, ANY HOTEL SHOULD BE FILTERED BY DATE.
+          filterByDate = false;
+        }
+      }
+      console.log("Filter by date? " + filterByDate);
+
+      /*
+      [3]
+      Now, we are going to COMPARE and VALIDATE whether the selected hotel matches
+      the user's criteria. This will result in a HUGE if.
+      */
+
+      //1st validation: COUNTRY.
+      if (filters.countries.includes(item.country)) {
+        //If TRUE, the ITEM's country matches the FILTER.
+        //2nd validation: PRICE
+        console.log(item.name + " MATCHES COUNTRY");
+        if (convertedPrice >= item.price) {
+          //If TRUE, the ITEM's price is EQUALS or LOWER than the FILTER's price.
+          //3rd validation: SIZE (rooms)
+          console.log(item.name + " MATCHES PRICE");
+          if (convertedRoomsStandard >= item.rooms) {
+            //If TRUE, the ITEM's amount of rooms is EQUALS or LOWER than the FILTER
+            //4th validation: DATE
+            console.log(item.name + " MATCHES ROOM AMOUNT");
+            if (filterByDate) {
+              if (
+                filters.date1.isBetween(
+                  moment(item.availabilityFrom),
+                  moment(item.availabilityTo)
+                )
+              ) {
+                //If this is TRUE, the FIRST DATE is bewteen the range.
+                //Now we must check for the SECOND DATE.
+                if (
+                  filters.date2.isBetween(
+                    moment(item.availabilityFrom),
+                    moment(item.availabilityTo)
+                  )
+                ) {
+                  //If this is TRUE, it matches. So we're pushing:
+                  filteredData.push(item);
+                }
+              }
+            } else {
+              //If not filtered by date, we're pushing:
+              filteredData.push(item);
+            }
+          }
+        }
+      }
+      return filteredData;
     });
+    console.log(filteredData);
   };
 
   return (
     <CardContainerElement onClick={filterFunction}>
-      {hotelData.map((item) => {
+      {filteredData.map((item) => {
         return (
           <Card
             className="animate__fadeInDown"
