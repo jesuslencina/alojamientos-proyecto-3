@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ListContext } from "./ListContext";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
@@ -35,19 +35,17 @@ const CardContainerElement = styled.section`
 function CardContainer() {
   const filters = useContext(ListContext)[0];
 
-  let filteredData = [];
-
   //FILTER FUNCTION
   const filterFunction = () => {
-    filteredData = [];
+    let filteredArray = [];
     hotelData.map((item) => {
       /*
       [1]
       First, it is neccessary to CONVERT the filters to match the data
       format of the item, and vice versa.
       */
-      console.log(".........................");
-      console.log(item.name + " is being filtered.");
+      /*  console.log(".........................");
+      console.log(item.name + " is being filtered."); */
       //Price: From "$" symbols to number
       let convertedPrice;
 
@@ -73,7 +71,7 @@ function CardContainer() {
         convertedPrice = 4;
       }
 
-      console.log("Filter price: " + convertedPrice);
+      /*  console.log("Filter price: " + convertedPrice); */
 
       //Rooms: Quantity to max number that tells whether it's small, medium or big sized
       let convertedRoomsStandard;
@@ -95,8 +93,8 @@ function CardContainer() {
         convertedRoomsStandard = 100;
       }
 
-      console.log("Filter rooms: " + convertedRoomsStandard);
-      console.log("Filter country: " + filters.countries);
+      /*  console.log("Filter rooms: " + convertedRoomsStandard);
+      console.log("Filter country: " + filters.countries); */
 
       /*
       [2]
@@ -112,7 +110,7 @@ function CardContainer() {
           filterByDate = false;
         }
       }
-      console.log("Filter by date? " + filterByDate);
+      /*  console.log("Filter by date? " + filterByDate); */
 
       /*
       [3]
@@ -124,15 +122,15 @@ function CardContainer() {
       if (filters.countries.includes(item.country)) {
         //If TRUE, the ITEM's country matches the FILTER.
         //2nd validation: PRICE
-        console.log(item.name + " MATCHES COUNTRY");
+        /*  console.log(item.name + " MATCHES COUNTRY"); */
         if (convertedPrice >= item.price) {
           //If TRUE, the ITEM's price is EQUALS or LOWER than the FILTER's price.
           //3rd validation: SIZE (rooms)
-          console.log(item.name + " MATCHES PRICE");
+          /*  console.log(item.name + " MATCHES PRICE"); */
           if (convertedRoomsStandard >= item.rooms) {
             //If TRUE, the ITEM's amount of rooms is EQUALS or LOWER than the FILTER
             //4th validation: DATE
-            console.log(item.name + " MATCHES ROOM AMOUNT");
+            /* console.log(item.name + " MATCHES ROOM AMOUNT"); */
             if (filterByDate) {
               if (
                 filters.date1.isBetween(
@@ -149,23 +147,29 @@ function CardContainer() {
                   )
                 ) {
                   //If this is TRUE, it matches. So we're pushing:
-                  filteredData.push(item);
+                  filteredArray.push(item);
                 }
               }
             } else {
               //If not filtered by date, we're pushing:
-              filteredData.push(item);
+              filteredArray.push(item);
             }
           }
         }
       }
-      return filteredData;
     });
-    console.log(filteredData);
+    return filteredArray;
   };
 
+  let filteredData = filterFunction();
+
+  useEffect(() => {
+    filterFunction();
+  });
+
   return (
-    <CardContainerElement onClick={filterFunction}>
+    <CardContainerElement>
+      {console.log(filteredData)}
       {filteredData.map((item) => {
         return (
           <Card
