@@ -44,8 +44,7 @@ function CardContainer() {
       First, it is neccessary to CONVERT the filters to match the data
       format of the item, and vice versa.
       */
-      /*  console.log(".........................");
-      console.log(item.name + " is being filtered."); */
+
       //Price: From "$" symbols to number
       let convertedPrice;
 
@@ -71,8 +70,6 @@ function CardContainer() {
         convertedPrice = 4;
       }
 
-      /*  console.log("Filter price: " + convertedPrice); */
-
       //Rooms: Quantity to max number that tells whether it's small, medium or big sized
       let convertedRoomsStandard;
       if (filters.rooms.length === 1) {
@@ -93,9 +90,6 @@ function CardContainer() {
         convertedRoomsStandard = 100;
       }
 
-      /*  console.log("Filter rooms: " + convertedRoomsStandard);
-      console.log("Filter country: " + filters.countries); */
-
       /*
       [2]
      We'll see whether the user has selected BOTH date filters or not.
@@ -110,7 +104,6 @@ function CardContainer() {
           filterByDate = false;
         }
       }
-      /*  console.log("Filter by date? " + filterByDate); */
 
       /*
       [3]
@@ -122,15 +115,15 @@ function CardContainer() {
       if (filters.countries.includes(item.country)) {
         //If TRUE, the ITEM's country matches the FILTER.
         //2nd validation: PRICE
-        /*  console.log(item.name + " MATCHES COUNTRY"); */
+
         if (convertedPrice >= item.price) {
           //If TRUE, the ITEM's price is EQUALS or LOWER than the FILTER's price.
           //3rd validation: SIZE (rooms)
-          /*  console.log(item.name + " MATCHES PRICE"); */
+
           if (convertedRoomsStandard >= item.rooms) {
             //If TRUE, the ITEM's amount of rooms is EQUALS or LOWER than the FILTER
             //4th validation: DATE
-            /* console.log(item.name + " MATCHES ROOM AMOUNT"); */
+
             if (filterByDate) {
               if (
                 filters.date1.isBetween(
