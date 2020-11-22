@@ -8,8 +8,15 @@ export function ListProvider(props) {
     date1: moment(),
     date2: moment().add(5, "d"),
     countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
-    price: ["$", "$$", "$$$", "$$$$"],
-    rooms: ["Pequeño", "Mediano", "Grande"]
+    prices: ["$", "$$", "$$$", "$$$$"],
+    rooms: ["Pequeño", "Mediano", "Grande"],
+    defaultOptions: {
+      date1: moment(),
+      date2: moment().add(5, "d"),
+      countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
+      prices: ["$", "$$", "$$$", "$$$$"],
+      rooms: ["Pequeño", "Mediano", "Grande"]
+    }
   });
 
   return (

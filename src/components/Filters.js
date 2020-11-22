@@ -113,19 +113,7 @@ function Filters() {
 
   const [buttonVisibility, setButtonVisibility] = useState("hidden");
 
-  const defaultOptions = {
-    date1: moment(),
-    date2: moment().add(5, "d"),
-    countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
-    price: ["$", "$$", "$$$", "$$$$"],
-    rooms: ["Pequeño", "Mediano", "Grande"]
-  };
-
   /*FUNCTIONS*/
-
-  //REMOVE ME//////////////////////////////////////////////////
-  console.log(filters.date1.format("MM-DD-YYYY"));
-  /////////////////////////////////////////////////////////////
 
   //Reset Button
   const makeButtonVisible = () => {
@@ -146,11 +134,11 @@ function Filters() {
     }
     const newFiltering = {
       ...filters,
-      date1: defaultOptions.date1,
-      date2: defaultOptions.date2,
-      countries: defaultOptions.countries,
-      price: defaultOptions.price,
-      rooms: defaultOptions.rooms
+      date1: filters.defaultOptions.date1,
+      date2: filters.defaultOptions.date2,
+      countries: filters.defaultOptions.countries,
+      prices: filters.defaultOptions.prices,
+      rooms: filters.defaultOptions.rooms
     };
     setFilters(newFiltering);
     makeButtonInvisible();
@@ -188,7 +176,7 @@ function Filters() {
     } else {
       const newFiltering = {
         ...filters,
-        [event.target.name]: defaultOptions[event.target.name]
+        [event.target.name]: filters.defaultOptions[event.target.name]
       };
       setFilters(newFiltering);
     }
@@ -230,7 +218,7 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faDollarSign} color={variables.gray} />
-        <select name="price" onChange={changeSelectFilter}>
+        <select name="prices" onChange={changeSelectFilter}>
           <option>Cualquier precio</option>
           <option>$</option>
           <option>$$</option>

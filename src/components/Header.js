@@ -41,9 +41,9 @@ function Header() {
   };
 
   const priceText = () => {
-    if (filters.price.length === 1) {
+    if (filters.prices.length === 1) {
       let textualPrice;
-      switch (filters.price[0]) {
+      switch (filters.prices[0]) {
         case "$":
           textualPrice = "económico";
           break;

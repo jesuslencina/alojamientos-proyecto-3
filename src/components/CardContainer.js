@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ListContext } from "./ListContext";
+import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import hotelData from "../assets/scripts/data";
@@ -31,8 +33,32 @@ const CardContainerElement = styled.section`
 /*------------------------------------------------------------------*/
 
 function CardContainer() {
+  const filters = useContext(ListContext)[0];
+
+  let filteredData;
+
+  //FILTER FUNCTION
+  const filterFunction = () => {
+    hotelData.map((item) => {
+      /*
+      [1]
+      First, it is neccessary to assign the item's date according to
+      the context. The Today variable in data.js isn't the same date
+      that's in the context. 
+      */
+      console.log("HOTEL:" + item.name);
+      console.log(`DATE FROM FILTERS: ${filters.date1}`);
+      console.log(`DATE FROM ITEM: ${moment(item.availabilityFrom)}`);
+      let difference = moment(
+        filters.date1.diff(moment(item.availabilityFrom))
+      );
+      console.log("DIFFERENCE: " + difference);
+      console.log("...........................");
+    });
+  };
+
   return (
-    <CardContainerElement>
+    <CardContainerElement onClick={filterFunction}>
       {hotelData.map((item) => {
         return (
           <Card
