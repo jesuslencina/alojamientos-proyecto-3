@@ -151,7 +151,8 @@ function Filters() {
     const newDate = event.target.value;
     if (
       (event.target.name === "date2" && moment(newDate) <= filters.date1) ||
-      (event.target.name === "date1" && moment(newDate) >= filters.date2)
+      (event.target.name === "date1" && moment(newDate) >= filters.date2) ||
+      (event.target.name === "date1" && moment(newDate) <= moment())
     ) {
       alert("Por favor, ingresá fechas de entrada y de salida válidas");
     } else {

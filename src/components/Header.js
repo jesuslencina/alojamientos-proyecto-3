@@ -64,7 +64,7 @@ function Header() {
           textualPrice = "económico";
           break;
       }
-      return "de precio " + textualPrice;
+      return "de precio máximo " + textualPrice;
     }
   };
 
