@@ -72,6 +72,7 @@ function CardContainer() {
 
       //Rooms: Quantity to max number that tells whether it's small, medium or big sized
       let convertedRoomsStandard;
+      let convertedRoomsOffset = 10;
       if (filters.rooms.length === 1) {
         switch (filters.rooms[0]) {
           case "Pequeño":
@@ -83,11 +84,12 @@ function CardContainer() {
             break;
 
           default:
-            convertedRoomsStandard = 100;
+            convertedRoomsStandard = 30;
             break;
         }
       } else {
-        convertedRoomsStandard = 100;
+        convertedRoomsStandard = 30;
+        convertedRoomsOffset = 30;
       }
 
       /*
@@ -120,8 +122,10 @@ function CardContainer() {
           //If TRUE, the ITEM's price is EQUALS or LOWER than the FILTER's price.
           //3rd validation: SIZE (rooms)
 
-          if (convertedRoomsStandard >= item.rooms) {
-            //If TRUE, the ITEM's amount of rooms is EQUALS or LOWER than the FILTER
+          if (
+            item.rooms < convertedRoomsStandard &&
+            item.rooms >= convertedRoomsStandard - convertedRoomsOffset
+          ) {
             //4th validation: DATE
 
             if (filterByDate) {
