@@ -166,7 +166,6 @@ function CardContainer() {
 
   return (
     <CardContainerElement>
-      {console.log(filteredData)}
       {filteredData.map((item) => {
         return (
           <Card
@@ -182,6 +181,7 @@ function CardContainer() {
           />
         );
       })}
+      {filteredData.length === 0 ? <h2>Sin resultados :(</h2> : ""}
     </CardContainerElement>
   );
 }
