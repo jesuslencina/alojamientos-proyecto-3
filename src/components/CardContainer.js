@@ -84,12 +84,12 @@ function CardContainer() {
             break;
 
           default:
-            convertedRoomsStandard = 30;
+            convertedRoomsStandard = 50;
             break;
         }
       } else {
-        convertedRoomsStandard = 30;
-        convertedRoomsOffset = 30;
+        convertedRoomsStandard = 50;
+        convertedRoomsOffset = 50;
       }
 
       /*
