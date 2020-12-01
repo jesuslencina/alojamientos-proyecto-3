@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,
   faMapMarker,
-  faDollarSign
+  faDollarSign,
+  faCalendar
 } from "@fortawesome/free-solid-svg-icons";
 import "animate.css/animate.css";
+import moment from "moment";
 
 const CardElement = styled.article`
   width: 30%;
@@ -123,6 +125,15 @@ function Card(props) {
           />
         </span>
         <p>Precio</p>
+      </div>
+      <div>
+        <span>
+          <FontAwesomeIcon icon={faCalendar} color="white" />
+        </span>
+        <p>
+          {moment(props.availabilityFrom).format("DD-MM-YYYY")} al{" "}
+          {moment(props.availabilityTo).format("DD-MM-YYYY")}
+        </p>
       </div>
       <button>Reservar</button>
     </CardElement>

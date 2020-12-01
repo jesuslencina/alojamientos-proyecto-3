@@ -34,7 +34,6 @@ const CardContainerElement = styled.section`
 
 function CardContainer() {
   const filters = useContext(ListContext)[0];
-
   //FILTER FUNCTION
   const filterFunction = () => {
     let filteredArray = [];
@@ -99,13 +98,8 @@ function CardContainer() {
      For this, we'll compare the CONTEXT to its same DEFAULT VALUES
       */
       let filterByDate = true; //If the validation below is FALSE, this will remain unchanged.
-      if (filters.date1.isSame(filters.defaultOptions.date1)) {
-        //If TRUE, it means the FIRST DATE was NOT changed.
-        if (filters.date2.isSame(filters.defaultOptions.date2)) {
-          //If TRUE, it means that BOTH DATES were NOT changed.
-          //If this is the case, ANY HOTEL SHOULD BE FILTERED BY DATE.
-          filterByDate = false;
-        }
+      if (filters.date1 === undefined || filters.date2 === undefined) {
+        filterByDate = false;
       }
 
       /*
@@ -129,16 +123,32 @@ function CardContainer() {
           ) {
             //4th validation: DATE
 
-           
-
             if (filterByDate) {
-              if (filters.date1 >= moment(item.availabilityFrom)) {
+              console.log(item.name);
+              console.log("date1 ", moment(filters.date1).format("DD-MM-YYYY"));
+              console.log("date2 ", moment(filters.date2).format("DD-MM-YYYY"));
+              console.log(
+                "availabilityFrom ",
+                moment(item.availabilityFrom).format("DD-MM-YYYY")
+              );
+              console.log(
+                "availabilityTo ",
+                moment(item.availabilityTo).format("DD-MM-YYYY")
+              );
+              if (
+                moment(filters.date1).isAfter(
+                  moment(item.availabilityFrom).subtract(1, "d"),
+                  "minute"
+                ) &&
+                moment(filters.date2).isBefore(
+                  moment(item.availabilityTo).add(1, "d"),
+                  "minute"
+                )
+              ) {
                 //If this is TRUE, the FIRST DATE is bewteen the range.
                 //Now we must check for the SECOND DATE.
-                if (filters.date2 < moment(item.availabilityTo)) {
-                  //If this is TRUE, it matches. So we're pushing:
-                  filteredArray.push(item);
-                }
+
+                filteredArray.push(item);
               }
             } else {
               //If not filtered by date, we're pushing:
@@ -148,6 +158,7 @@ function CardContainer() {
         }
       }
     });
+
     return filteredArray;
   };
 
@@ -156,7 +167,7 @@ function CardContainer() {
   useEffect(() => {
     filterFunction();
   });
-
+  console.log(filteredData);
   return (
     <CardContainerElement>
       {filteredData.map((item) => {
@@ -171,6 +182,8 @@ function CardContainer() {
             country={item.country}
             rooms={item.rooms}
             price={item.price}
+            availabilityFrom={item.availabilityFrom}
+            availabilityTo={item.availabilityTo}
           />
         );
       })}

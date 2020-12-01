@@ -145,12 +145,9 @@ function Filters() {
   //date filters
   const changeDateFilters = (event) => {
     const newDate = event.target.value;
-    console.log(filters.defaultOptions.date1);
     if (
-      (event.target.name === "date2" && moment(newDate) <= filters.date1) ||
-      (event.target.name === "date1" && moment(newDate) >= filters.date2) ||
-      (event.target.name === "date1" &&
-        moment(newDate).isBefore(moment().subtract(1, "d")))
+      event.target.name === "date1" &&
+      moment(newDate).isBefore(moment().subtract(1, "d"))
     ) {
       alert("Por favor, ingresá fechas de entrada y de salida válidas");
     } else {
@@ -189,7 +186,7 @@ function Filters() {
         <input
           name="date1"
           type="date"
-          value={`${filters.date1.format("YYYY-MM-DD")}`}
+          value={filters.date1}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
@@ -199,7 +196,7 @@ function Filters() {
         <input
           name="date2"
           type="date"
-          value={`${filters.date2.format("YYYY-MM-DD")}`}
+          value={filters.date2}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
