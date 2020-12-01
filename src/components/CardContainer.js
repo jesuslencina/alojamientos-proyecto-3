@@ -129,21 +129,13 @@ function CardContainer() {
           ) {
             //4th validation: DATE
 
+           
+
             if (filterByDate) {
-              if (
-                filters.date1.isBetween(
-                  moment(item.availabilityFrom),
-                  moment(item.availabilityTo)
-                )
-              ) {
+              if (filters.date1 >= moment(item.availabilityFrom)) {
                 //If this is TRUE, the FIRST DATE is bewteen the range.
                 //Now we must check for the SECOND DATE.
-                if (
-                  filters.date2.isBetween(
-                    moment(item.availabilityFrom),
-                    moment(item.availabilityTo)
-                  )
-                ) {
+                if (filters.date2 < moment(item.availabilityTo)) {
                   //If this is TRUE, it matches. So we're pushing:
                   filteredArray.push(item);
                 }

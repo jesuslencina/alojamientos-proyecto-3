@@ -128,10 +128,6 @@ function Filters() {
   };
 
   const resetFilters = () => {
-    const selectInputs = document.querySelectorAll("select");
-    for (let index = 0; index < selectInputs.length; index++) {
-      selectInputs[index].selectedIndex = 0;
-    }
     const newFiltering = {
       ...filters,
       date1: filters.defaultOptions.date1,
@@ -149,11 +145,12 @@ function Filters() {
   //date filters
   const changeDateFilters = (event) => {
     const newDate = event.target.value;
+    console.log(filters.defaultOptions.date1);
     if (
       (event.target.name === "date2" && moment(newDate) <= filters.date1) ||
       (event.target.name === "date1" && moment(newDate) >= filters.date2) ||
       (event.target.name === "date1" &&
-        moment(newDate) < filters.defaultOptions.date1)
+        moment(newDate).isBefore(moment().subtract(1, "d")))
     ) {
       alert("Por favor, ingresá fechas de entrada y de salida válidas");
     } else {
@@ -192,7 +189,7 @@ function Filters() {
         <input
           name="date1"
           type="date"
-          //value={"filters.date1.format("MM-DD-YYYY")}
+          value={`${filters.date1.format("YYYY-MM-DD")}`}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
@@ -202,14 +199,18 @@ function Filters() {
         <input
           name="date2"
           type="date"
-          //value={filters.date1.format("MM-DD-YYYY")}
+          value={`${filters.date2.format("YYYY-MM-DD")}`}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faGlobe} color={variables.gray} />
-        <select name="countries" onChange={changeSelectFilter}>
+        <select
+          name="countries"
+          onChange={changeSelectFilter}
+          value={filters.countries}
+        >
           <option>Cualquier país</option>
           <option>Argentina</option>
           <option>Brasil</option>
@@ -220,7 +221,11 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faDollarSign} color={variables.gray} />
-        <select name="prices" onChange={changeSelectFilter}>
+        <select
+          name="prices"
+          onChange={changeSelectFilter}
+          value={filters.prices}
+        >
           <option>Cualquier precio</option>
           <option>$</option>
           <option>$$</option>
@@ -231,7 +236,11 @@ function Filters() {
 
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faBed} color={variables.gray} />
-        <select name="rooms" onChange={changeSelectFilter}>
+        <select
+          name="rooms"
+          onChange={changeSelectFilter}
+          value={filters.rooms}
+        >
           <option>Cualquier tamaño</option>
           <option>Pequeño</option>
           <option>Mediano</option>
