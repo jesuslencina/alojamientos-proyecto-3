@@ -74,6 +74,13 @@ function Header() {
     }
   };
 
+  const dateText = () => {
+    if (filters.date1 !== undefined && filters.date2 !== undefined) {
+      return `desde el ${moment(filters.date1).format("dddd D [de] MMMM")}  
+      hasta el ${moment(filters.date2).format("dddd D [de] MMMM")}  `;
+    }
+  };
+
   return (
     <HeaderElement>
       <h1>
@@ -82,8 +89,7 @@ function Header() {
         <span style={{ color: "#C4482F" }}>go</span>
       </h1>
       <p>
-        Desde el <span>{moment(filters.date1).format("dddd D [de] MMMM")}</span>{" "}
-        hasta el <span>{moment(filters.date2).format("dddd D [de] MMMM")}</span>{" "}
+        Buscando hoteles {dateText()}
         {countryText()} {priceText()} {sizeText()}
       </p>
     </HeaderElement>

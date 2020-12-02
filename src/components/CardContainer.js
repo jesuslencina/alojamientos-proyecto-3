@@ -125,12 +125,14 @@ function CardContainer() {
 
             if (filterByDate) {
               if (
-                moment(filters.date1).format("DD-MM-YYYY") >
-                  moment(item.availabilityFrom).format("DD-MM-YYYY") &&
+                moment(filters.date1).isAfter(
+                  moment(item.availabilityFrom).format("DD-MM-YYYY")
+                ) &&
                 //.subtract(1, "d"),
                 //"minute"
-                moment(filters.date2).format("DD-MM-YYYY") <
+                moment(filters.date2).isBefore(
                   moment(item.availabilityTo).format("DD-MM-YYYY")
+                )
                 //.subtract(1, "d"),
                 //"minute"
               ) {
