@@ -124,26 +124,15 @@ function CardContainer() {
             //4th validation: DATE
 
             if (filterByDate) {
-              console.log(item.name);
-              console.log("date1 ", moment(filters.date1).format("DD-MM-YYYY"));
-              console.log("date2 ", moment(filters.date2).format("DD-MM-YYYY"));
-              console.log(
-                "availabilityFrom ",
-                moment(item.availabilityFrom).format("DD-MM-YYYY")
-              );
-              console.log(
-                "availabilityTo ",
-                moment(item.availabilityTo).format("DD-MM-YYYY")
-              );
               if (
-                moment(filters.date1).isAfter(
-                  moment(item.availabilityFrom).subtract(1, "d"),
-                  "minute"
-                ) &&
-                moment(filters.date2).isBefore(
-                  moment(item.availabilityTo).add(1, "d"),
-                  "minute"
-                )
+                moment(filters.date1).format("DD-MM-YYYY") >
+                  moment(item.availabilityFrom).format("DD-MM-YYYY") &&
+                //.subtract(1, "d"),
+                //"minute"
+                moment(filters.date2).format("DD-MM-YYYY") <
+                  moment(item.availabilityTo).format("DD-MM-YYYY")
+                //.subtract(1, "d"),
+                //"minute"
               ) {
                 //If this is TRUE, the FIRST DATE is bewteen the range.
                 //Now we must check for the SECOND DATE.
@@ -167,7 +156,7 @@ function CardContainer() {
   useEffect(() => {
     filterFunction();
   });
-  console.log(filteredData);
+
   return (
     <CardContainerElement>
       {filteredData.map((item) => {

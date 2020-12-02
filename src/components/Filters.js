@@ -186,7 +186,7 @@ function Filters() {
         <input
           name="date1"
           type="date"
-          value={filters.date1}
+          value={moment(filters.date1).format("MM-DD-YYYY")}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
@@ -196,7 +196,7 @@ function Filters() {
         <input
           name="date2"
           type="date"
-          value={filters.date2}
+          value={moment(filters.date2).format("MM-DD-YYYY")}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
