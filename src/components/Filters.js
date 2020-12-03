@@ -128,6 +128,10 @@ function Filters() {
   };
 
   const resetFilters = () => {
+    const selectInputs = document.querySelectorAll("select");
+    for (let index = 0; index < selectInputs.length; index++) {
+      selectInputs[index].selectedIndex = 0;
+    }
     const newFiltering = {
       ...filters,
       date1: filters.defaultOptions.date1,
@@ -207,7 +211,7 @@ function Filters() {
         <select
           name="countries"
           onChange={changeSelectFilter}
-          value={filters.countries}
+          //value={filters.countries}
         >
           <option>Cualquier país</option>
           <option>Argentina</option>
@@ -222,7 +226,7 @@ function Filters() {
         <select
           name="prices"
           onChange={changeSelectFilter}
-          value={filters.prices}
+          //value={filters.prices}
         >
           <option>Cualquier precio</option>
           <option>$</option>
@@ -237,7 +241,7 @@ function Filters() {
         <select
           name="rooms"
           onChange={changeSelectFilter}
-          value={filters.rooms}
+          //value={filters.rooms}
         >
           <option>Cualquier tamaño</option>
           <option>Pequeño</option>
