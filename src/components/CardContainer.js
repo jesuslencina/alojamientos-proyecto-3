@@ -130,9 +130,6 @@ function CardContainer() {
                 filters.date2.format("YYYY-MM-DD") <=
                   moment(item.availabilityTo).format("YYYY-MM-DD")
               ) {
-                //If this is TRUE, the FIRST DATE is bewteen the range.
-                //Now we must check for the SECOND DATE.
-
                 filteredArray.push(item);
               }
             } else {
