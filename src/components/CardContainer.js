@@ -125,16 +125,10 @@ function CardContainer() {
 
             if (filterByDate) {
               if (
-                moment(filters.date1).isAfter(
-                  moment(item.availabilityFrom).format("DD-MM-YYYY")
-                ) &&
-                //.subtract(1, "d"),
-                //"minute"
-                moment(filters.date2).isBefore(
-                  moment(item.availabilityTo).format("DD-MM-YYYY")
-                )
-                //.subtract(1, "d"),
-                //"minute"
+                filters.date1.format("YYYY-MM-DD") >=
+                  moment(item.availabilityFrom).format("YYYY-MM-DD") &&
+                filters.date2.format("YYYY-MM-DD") <=
+                  moment(item.availabilityTo).format("YYYY-MM-DD")
               ) {
                 //If this is TRUE, the FIRST DATE is bewteen the range.
                 //Now we must check for the SECOND DATE.
