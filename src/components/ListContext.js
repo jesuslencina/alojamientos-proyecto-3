@@ -4,14 +4,14 @@ export const ListContext = createContext();
 
 export function ListProvider(props) {
   const [filters, setFilters] = useState({
-    date1: undefined,
-    date2: undefined,
+    date1: null,
+    date2: null,
     countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
     prices: ["$", "$$", "$$$", "$$$$"],
     rooms: ["Pequeño", "Mediano", "Grande"],
     defaultOptions: {
-      date1: undefined,
-      date2: undefined,
+      date1: null,
+      date2: null,
       countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
       prices: ["$", "$$", "$$$", "$$$$"],
       rooms: ["Pequeño", "Mediano", "Grande"]

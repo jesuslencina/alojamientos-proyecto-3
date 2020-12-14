@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import variables from "../assets/globalStyles";
+import variables from "../../../assets/globalStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBed,

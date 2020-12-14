@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { ListContext } from "./ListContext";
+import { ListContext } from "../ListContext";
 import moment from "moment";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
-import hotelData from "../assets/scripts/data";
-import Card from "./Card";
-import variables from "../assets/globalStyles";
+import hotelData from "../../assets/scripts/data";
+import Card from "./Card/Card";
+import variables from "../../assets/globalStyles";
 import "animate.css/animate.css";
 
 /*------------------------------------------------------------------*/
@@ -98,7 +98,7 @@ function CardContainer() {
      For this, we'll compare the CONTEXT to its same DEFAULT VALUES
       */
       let filterByDate = true; //If the validation below is FALSE, this will remain unchanged.
-      if (filters.date1 === undefined || filters.date2 === undefined) {
+      if (filters.date1 === null || filters.date2 === null) {
         filterByDate = false;
       }
 

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { ListContext } from "./ListContext";
+import { ListContext } from "../ListContext";
 import moment from "moment";
 
 import styled from "styled-components";
-import variables from "../assets/globalStyles";
+import variables from "../../assets/globalStyles";
 
 import "moment/locale/es";
 moment.updateLocale("es");
@@ -75,7 +75,7 @@ function Header() {
   };
 
   const dateText = () => {
-    if (filters.date1 !== undefined && filters.date2 !== undefined) {
+    if (filters.date1 !== null && filters.date2 !== null) {
       return `desde el ${moment(filters.date1).format("dddd D [de] MMMM")}  
       hasta el ${moment(filters.date2).format("dddd D [de] MMMM")}  `;
     }

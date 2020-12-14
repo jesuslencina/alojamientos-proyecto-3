@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { ListContext } from "./ListContext";
+import { ListContext } from "../ListContext";
 import moment from "moment";
 
 import styled from "styled-components";
-import variables from "../assets/globalStyles";
+import variables from "../../assets/globalStyles";
 import "animate.css/animate.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -152,7 +152,9 @@ function Filters() {
     if (
       (event.target.name === "date1" &&
         moment(newDate).isBefore(moment().subtract(1, "d"))) ||
-      (event.target.name === "date2" && moment(newDate).isBefore(filters.date1))
+      (event.target.name === "date2" &&
+        moment(newDate).isBefore(filters.date1)) ||
+      (event.target.name === "date1" && moment(newDate).isAfter(filters.date2))
     ) {
       alert("Por favor, ingresá fechas de entrada y de salida válidas");
     } else {
