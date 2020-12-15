@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import { ListContext } from "../ListContext";
-import moment from "moment";
-import { v4 as uuidv4 } from "uuid";
-import styled from "styled-components";
-import hotelData from "../../assets/scripts/data";
-import Card from "./Card/Card";
-import variables from "../../assets/globalStyles";
-import "animate.css/animate.css";
+import React, { useContext, useEffect } from 'react';
+import { ListContext } from '../ListContext';
+import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
+import hotelData from '../../assets/scripts/data';
+import Card from '../Card/Card';
+import variables from '../../assets/globalStyles';
+import 'animate.css/animate.css';
 
 /*------------------------------------------------------------------*/
 //STYLED SETUP
@@ -49,15 +49,15 @@ function CardContainer() {
 
       if (filters.prices.length === 1) {
         switch (filters.prices[0]) {
-          case "$":
+          case '$':
             convertedPrice = 1;
             break;
 
-          case "$$":
+          case '$$':
             convertedPrice = 2;
             break;
 
-          case "$$$":
+          case '$$$':
             convertedPrice = 3;
             break;
 
@@ -74,11 +74,11 @@ function CardContainer() {
       let convertedRoomsOffset = 10;
       if (filters.rooms.length === 1) {
         switch (filters.rooms[0]) {
-          case "Pequeño":
+          case 'Pequeño':
             convertedRoomsStandard = 10;
             break;
 
-          case "Mediano":
+          case 'Mediano':
             convertedRoomsStandard = 20;
             break;
 
@@ -125,10 +125,10 @@ function CardContainer() {
 
             if (filterByDate) {
               if (
-                filters.date1.format("YYYY-MM-DD") >=
-                  moment(item.availabilityFrom).format("YYYY-MM-DD") &&
-                filters.date2.format("YYYY-MM-DD") <=
-                  moment(item.availabilityTo).format("YYYY-MM-DD")
+                filters.date1.format('YYYY-MM-DD') >=
+                  moment(item.availabilityFrom).format('YYYY-MM-DD') &&
+                filters.date2.format('YYYY-MM-DD') <=
+                  moment(item.availabilityTo).format('YYYY-MM-DD')
               ) {
                 filteredArray.push(item);
               }
@@ -169,7 +169,7 @@ function CardContainer() {
           />
         );
       })}
-      {filteredData.length === 0 ? <h2>Sin resultados :(</h2> : ""}
+      {filteredData.length === 0 ? <h2>Sin resultados :(</h2> : ''}
     </CardContainerElement>
   );
 }
