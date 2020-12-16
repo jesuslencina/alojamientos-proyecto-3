@@ -40,10 +40,6 @@ function ResetBtn(props) {
   /*FUNCTIONS*/
 
   const resetFilters = () => {
-    const selectInputs = document.querySelectorAll('select');
-    for (let index = 0; index < selectInputs.length; index++) {
-      selectInputs[index].selectedIndex = 0;
-    }
     const newFiltering = {
       ...filters,
       date1: filters.defaultOptions.date1,

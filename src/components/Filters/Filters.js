@@ -166,13 +166,14 @@ function Filters() {
         <select
           name="countries"
           onChange={changeSelectFilter}
-          //value={filters.countries}
-        >
-          <option>Cualquier país</option>
-          <option>Argentina</option>
-          <option>Brasil</option>
-          <option>Chile</option>
-          <option>Uruguay</option>
+          value={filters.countries}>
+          <option value={['Argentina', 'Brasil', 'Chile', 'Uruguay']}>
+            Cualquier país
+          </option>
+          <option value="Argentina">Argentina</option>
+          <option value="Brasil">Brasil</option>
+          <option value="Chile">Chile</option>
+          <option value="Uruguay">Uruguay</option>
         </select>
       </IndividualFilterElement>
 
@@ -181,13 +182,12 @@ function Filters() {
         <select
           name="prices"
           onChange={changeSelectFilter}
-          //value={filters.prices}
-        >
-          <option>Cualquier precio</option>
-          <option>$</option>
-          <option>$$</option>
-          <option>$$$</option>
-          <option>$$$$</option>
+          value={filters.prices}>
+          <option value={['$', '$$', '$$$', '$$$$']}>Cualquier precio</option>
+          <option value="$">$</option>
+          <option value="$$">$$</option>
+          <option value="$$$">$$$</option>
+          <option value="$$$$">$$$$</option>
         </select>
       </IndividualFilterElement>
 
@@ -196,12 +196,13 @@ function Filters() {
         <select
           name="rooms"
           onChange={changeSelectFilter}
-          //value={filters.rooms}
-        >
-          <option>Cualquier tamaño</option>
-          <option>Pequeño</option>
-          <option>Mediano</option>
-          <option>Grande</option>
+          value={filters.rooms}>
+          <option value={['Pequeño', 'Mediano', 'Grande']}>
+            Cualquier tamaño
+          </option>
+          <option value="Pequeño">Pequeño</option>
+          <option value="Mediano">Mediano</option>
+          <option value="Grande">Grande</option>
         </select>
       </IndividualFilterElement>
       <ResetBtn
