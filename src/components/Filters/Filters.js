@@ -1,20 +1,21 @@
-import React, { useState, useContext } from "react";
-import { ListContext } from "../ListContext";
-import moment from "moment";
+import React, { useState, useContext } from 'react';
+import { ListContext } from '../ListContext';
+import moment from 'moment';
 
-import styled from "styled-components";
-import variables from "../../assets/globalStyles";
-import "animate.css/animate.css";
+import styled from 'styled-components';
+import variables from '../../assets/globalStyles';
+import 'animate.css/animate.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSignInAlt,
   faSignOutAlt,
   faGlobe,
   faDollarSign,
-  faBed
-} from "@fortawesome/free-solid-svg-icons";
+  faBed,
+} from '@fortawesome/free-solid-svg-icons';
 
+import ResetBtn from './ResetBtn';
 /*------------------------------------------------------------------*/
 //STYLED SETUP
 /*------------------------------------------------------------------*/
@@ -72,37 +73,6 @@ const IndividualFilterElement = styled.div`
   }
 `;
 
-const ResetButton = styled.button`
-  position: absolute;
-  top: 4.25rem;
-  border: none;
-  background-color: ${variables.secondaryColor};
-  color: white;
-  font-weight: 650;
-  width: 5rem;
-  height: 2rem;
-  border-radius: 27px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: white;
-    color: ${variables.secondaryColor};
-    border: 1pt inset ${variables.secondaryColor};
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &.hidden {
-    display: none;
-  }
-
-  @media screen and (max-width: ${variables.breakpoint}) {
-    top: 15rem;
-  }
-`;
-
 /*------------------------------------------------------------------*/
 //COMPONENT
 /*------------------------------------------------------------------*/
@@ -111,76 +81,59 @@ function Filters() {
   /*STATE & CONTEXT SETUP*/
   const [filters, setFilters] = useContext(ListContext);
 
-  const [buttonVisibility, setButtonVisibility] = useState("hidden");
+  //RESET BUTTON
+  const [buttonVisibility, setButtonVisibility] = useState('hidden');
 
-  /*FUNCTIONS*/
-
-  //Reset Button
+  //FUNCTIONS
   const makeButtonVisible = () => {
-    setButtonVisibility("animate__bounceIn");
+    setButtonVisibility('animate__bounceIn');
   };
 
   const makeButtonInvisible = () => {
-    setButtonVisibility("animate__bounceOut");
+    setButtonVisibility('animate__bounceOut');
     setTimeout(() => {
-      setButtonVisibility("hidden");
+      setButtonVisibility('hidden');
     }, 700);
   };
 
-  const resetFilters = () => {
-    const selectInputs = document.querySelectorAll("select");
-    for (let index = 0; index < selectInputs.length; index++) {
-      selectInputs[index].selectedIndex = 0;
-    }
-    const newFiltering = {
-      ...filters,
-      date1: filters.defaultOptions.date1,
-      date2: filters.defaultOptions.date2,
-      countries: filters.defaultOptions.countries,
-      prices: filters.defaultOptions.prices,
-      rooms: filters.defaultOptions.rooms
-    };
-    setFilters(newFiltering);
-    makeButtonInvisible();
-  };
-
   //Handle filters' changes
-
   //date filters
   const changeDateFilters = (event) => {
     const newDate = event.target.value;
     if (
-      (event.target.name === "date1" &&
-        moment(newDate).isBefore(moment().subtract(1, "d"))) ||
-      (event.target.name === "date2" &&
+      (event.target.name === 'date1' &&
+        moment(newDate).isBefore(moment().subtract(1, 'd'))) ||
+      (event.target.name === 'date2' &&
         moment(newDate).isBefore(filters.date1)) ||
-      (event.target.name === "date1" && moment(newDate).isAfter(filters.date2))
+      (event.target.name === 'date1' && moment(newDate).isAfter(filters.date2))
     ) {
-      alert("Por favor, ingresá fechas de entrada y de salida válidas");
+      alert('Por favor, ingresá fechas de entrada y de salida válidas');
     } else {
       const newFiltering = {
         ...filters,
-        [event.target.name]: moment(newDate)
+        [event.target.name]: moment(newDate),
       };
-      setFilters(newFiltering);
+
       makeButtonVisible();
+      setFilters(newFiltering);
     }
   };
 
   //select filters
   const changeSelectFilter = (event) => {
-    if (!event.target.value.includes("Cualquier")) {
+    if (!event.target.value.includes('Cualquier')) {
       const newFiltering = {
         ...filters,
-        [event.target.name]: [event.target.value]
+        [event.target.name]: [event.target.value],
       };
       setFilters(newFiltering);
       makeButtonVisible();
     } else {
       const newFiltering = {
         ...filters,
-        [event.target.name]: filters.defaultOptions[event.target.name]
+        [event.target.name]: filters.defaultOptions[event.target.name],
       };
+
       setFilters(newFiltering);
     }
   };
@@ -193,7 +146,7 @@ function Filters() {
         <input
           name="date1"
           type="date"
-          value={moment(filters.date1).format("YYYY-MM-DD")}
+          value={moment(filters.date1).format('YYYY-MM-DD')}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
@@ -203,7 +156,7 @@ function Filters() {
         <input
           name="date2"
           type="date"
-          value={moment(filters.date2).format("YYYY-MM-DD")}
+          value={moment(filters.date2).format('YYYY-MM-DD')}
           onChange={changeDateFilters}
         />
       </IndividualFilterElement>
@@ -251,9 +204,10 @@ function Filters() {
           <option>Grande</option>
         </select>
       </IndividualFilterElement>
-      <ResetButton className={buttonVisibility} onClick={resetFilters}>
-        RESET
-      </ResetButton>
+      <ResetBtn
+        visibility={buttonVisibility}
+        makeButtonInvisible={makeButtonInvisible}
+      />
     </FilterElement>
   );
 }
