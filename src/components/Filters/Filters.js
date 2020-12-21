@@ -16,6 +16,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import ResetBtn from './ResetBtn';
+import Modal from './Modal';
 /*------------------------------------------------------------------*/
 //STYLED SETUP
 /*------------------------------------------------------------------*/
@@ -84,7 +85,11 @@ function Filters() {
   //RESET BUTTON
   const [buttonVisibility, setButtonVisibility] = useState('hidden');
 
+  //MODAL
+  const [modalVisibility, setModalVisibility] = useState(false);
+
   //FUNCTIONS
+  //Reset Button
   const makeButtonVisible = () => {
     setButtonVisibility('animate__bounceIn');
   };
@@ -94,6 +99,15 @@ function Filters() {
     setTimeout(() => {
       setButtonVisibility('hidden');
     }, 700);
+  };
+
+  //Modal
+  const makeModalVisible = () => {
+    setModalVisibility(true);
+  };
+
+  const makeModalInvisible = () => {
+    setModalVisibility(false);
   };
 
   //Handle filters' changes
@@ -107,7 +121,7 @@ function Filters() {
         moment(newDate).isBefore(filters.date1)) ||
       (event.target.name === 'date1' && moment(newDate).isAfter(filters.date2))
     ) {
-      alert('Por favor, ingresá fechas de entrada y de salida válidas');
+      makeModalVisible();
     } else {
       const newFiltering = {
         ...filters,
@@ -141,6 +155,7 @@ function Filters() {
   /*JSX*/
   return (
     <FilterElement>
+      {modalVisibility ? <Modal makeModalInvisible={makeModalInvisible} /> : ''}
       <IndividualFilterElement>
         <FontAwesomeIcon icon={faSignInAlt} color={variables.gray} />
         <input
