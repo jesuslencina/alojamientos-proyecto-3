@@ -19,22 +19,22 @@ function PriceTag(props) {
       <FontAwesomeIcon
         icon={faDollarSign}
         color="white"
-        opacity={props.props.price > 0 ? '100%' : '50%'}
+        opacity={props.price > 0 ? '100%' : '50%'}
       />
       <FontAwesomeIcon
         icon={faDollarSign}
         color="white"
-        opacity={props.props.price > 1 ? '100%' : '50%'}
+        opacity={props.price > 1 ? '100%' : '50%'}
       />
       <FontAwesomeIcon
         icon={faDollarSign}
         color="white"
-        opacity={props.props.price > 2 ? '100%' : '50%'}
+        opacity={props.price > 2 ? '100%' : '50%'}
       />
       <FontAwesomeIcon
         icon={faDollarSign}
         color="white"
-        opacity={props.props.price > 3 ? '100%' : '50%'}
+        opacity={props.price > 3 ? '100%' : '50%'}
       />
     </PriceTagElement>
   );

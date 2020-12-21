@@ -103,7 +103,7 @@ function Card(props) {
         <p>{props.rooms} Habitaciones</p>
       </div>
       <div className="price">
-        <PriceTag props={props} />
+        <PriceTag price={props.price} />
         <p>Precio</p>
       </div>
       <div>
