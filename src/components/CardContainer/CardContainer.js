@@ -37,6 +37,7 @@ function CardContainer() {
   //FILTER FUNCTION
   const filterFunction = () => {
     let filteredArray = [];
+    // eslint-disable-next-line
     hotelData.map((item) => {
       /*
       [1]
