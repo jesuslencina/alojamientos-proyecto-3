@@ -18,7 +18,7 @@ export function ListProvider(props) {
       PRICEY: '$$$',
       EXPENSIVE: '$$$$',
     },
-    rooms: ['Pequeño', 'Mediano', 'Grande'],
+    rooms: { SMALL: 'Pequeño', AVERAGE: 'Mediano', BIG: 'Grande' },
     defaultOptions: {
       date1: null,
       date2: null,
@@ -34,7 +34,7 @@ export function ListProvider(props) {
         PRICEY: '$$$',
         EXPENSIVE: '$$$$',
       },
-      rooms: ['Pequeño', 'Mediano', 'Grande'],
+      rooms: { SMALL: 'Pequeño', AVERAGE: 'Mediano', BIG: 'Grande' },
     },
   });
 
