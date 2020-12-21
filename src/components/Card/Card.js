@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBed,
   faMapMarker,
-  faDollarSign,
   faCalendar,
 } from '@fortawesome/free-solid-svg-icons';
 import 'animate.css/animate.css';
 import moment from 'moment';
+import PriceTag from './PriceTag';
 
 const CardElement = styled.article`
   width: 30%;
@@ -103,28 +103,7 @@ function Card(props) {
         <p>{props.rooms} Habitaciones</p>
       </div>
       <div className="price">
-        <span>
-          <FontAwesomeIcon
-            icon={faDollarSign}
-            color="white"
-            opacity={props.price > 0 ? '100%' : '50%'}
-          />
-          <FontAwesomeIcon
-            icon={faDollarSign}
-            color="white"
-            opacity={props.price > 1 ? '100%' : '50%'}
-          />
-          <FontAwesomeIcon
-            icon={faDollarSign}
-            color="white"
-            opacity={props.price > 2 ? '100%' : '50%'}
-          />
-          <FontAwesomeIcon
-            icon={faDollarSign}
-            color="white"
-            opacity={props.price > 3 ? '100%' : '50%'}
-          />
-        </span>
+        <PriceTag props={props} />
         <p>Precio</p>
       </div>
       <div>
