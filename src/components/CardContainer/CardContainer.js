@@ -109,7 +109,7 @@ function CardContainer() {
       */
 
       //1st validation: COUNTRY.
-      if (filters.countries.includes(item.country)) {
+      if (Object.values(filters.countries).includes(item.country)) {
         //If TRUE, the ITEM's country matches the FILTER.
         //2nd validation: PRICE
 

@@ -167,7 +167,7 @@ function Filters() {
           name="countries"
           onChange={changeSelectFilter}
           value={filters.countries}>
-          <option value={['Argentina', 'Brasil', 'Chile', 'Uruguay']}>
+          <option value={filters.countries.defaultOptions}>
             Cualquier país
           </option>
           <option value="Argentina">Argentina</option>
@@ -183,7 +183,9 @@ function Filters() {
           name="prices"
           onChange={changeSelectFilter}
           value={filters.prices}>
-          <option value={['$', '$$', '$$$', '$$$$']}>Cualquier precio</option>
+          <option value={filters.prices.defaultOptions}>
+            Cualquier precio
+          </option>
           <option value="$">$</option>
           <option value="$$">$$</option>
           <option value="$$$">$$$</option>
@@ -197,9 +199,7 @@ function Filters() {
           name="rooms"
           onChange={changeSelectFilter}
           value={filters.rooms}>
-          <option value={['Pequeño', 'Mediano', 'Grande']}>
-            Cualquier tamaño
-          </option>
+          <option value={filters.rooms.defaultOptions}>Cualquier tamaño</option>
           <option value="Pequeño">Pequeño</option>
           <option value="Mediano">Mediano</option>
           <option value="Grande">Grande</option>

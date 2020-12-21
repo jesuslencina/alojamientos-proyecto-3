@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext } from 'react';
 
 export const ListContext = createContext();
 
@@ -6,16 +6,36 @@ export function ListProvider(props) {
   const [filters, setFilters] = useState({
     date1: null,
     date2: null,
-    countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
-    prices: ["$", "$$", "$$$", "$$$$"],
-    rooms: ["Pequeño", "Mediano", "Grande"],
+    countries: {
+      ARGENTINA: 'Argentina',
+      BRASIL: 'Brasil',
+      CHILE: 'Chile',
+      URUGUAY: 'Uruguay',
+    },
+    prices: {
+      CHEAP: '$',
+      AVREAGE: '$$',
+      PRICEY: '$$$',
+      EXPENSIVE: '$$$$',
+    },
+    rooms: ['Pequeño', 'Mediano', 'Grande'],
     defaultOptions: {
       date1: null,
       date2: null,
-      countries: ["Argentina", "Brasil", "Chile", "Uruguay"],
-      prices: ["$", "$$", "$$$", "$$$$"],
-      rooms: ["Pequeño", "Mediano", "Grande"]
-    }
+      countries: {
+        ARGENTINA: 'Argentina',
+        BRASIL: 'Brasil',
+        CHILE: 'Chile',
+        URUGUAY: 'Uruguay',
+      },
+      prices: {
+        CHEAP: '$',
+        AVREAGE: '$$',
+        PRICEY: '$$$',
+        EXPENSIVE: '$$$$',
+      },
+      rooms: ['Pequeño', 'Mediano', 'Grande'],
+    },
   });
 
   return (
